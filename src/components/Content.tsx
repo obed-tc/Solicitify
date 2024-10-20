@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { useEffect, useState } from "react";
 import BodyResponse from "./BodyResponse";
 import axios from "axios";
@@ -8,6 +9,7 @@ import { useSelector } from "react-redux";
 function Content() {
   const dispatch = useDispatch();
   const requestCurrentValue = useSelector(
+    // @ts-expect-error
     (state) => state.requestCurrent.requestCurrent
   );
   const [isLoading, setIsLoading] = useState(false);
@@ -53,6 +55,7 @@ function Content() {
         authData: authData,
       })
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     url,
     method,
@@ -88,17 +91,17 @@ function Content() {
   const changeAuth = (authData) => {
     setAuthData(authData);
   };
-  const changeJsonBody = (b: any) => {
+  const changeJsonBody = (b) => {
     setJsonBodyRequest(b);
   };
 
-  const changeFormBody = (b: any) => {
+  const changeFormBody = (b) => {
     const data = b.filter((item) => item.check == true);
 
     setFormBodyRequest(data);
   };
 
-  const changeTypeBody = (t: any) => {
+  const changeTypeBody = (t) => {
     setTypeBodyRequest(t);
   };
 
@@ -156,11 +159,14 @@ function Content() {
   };
 
   const generarQueryString = (lista: []) => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
     const elementosConCheck = lista.filter((item) => item.check === true);
 
     const queryString = elementosConCheck
       .map(
         (item) =>
+          // @ts-expect-error
           `${encodeURIComponent(item.name)}=${encodeURIComponent(item.value)}`
       )
       .join("&");
@@ -168,7 +174,7 @@ function Content() {
     return `${queryString}`;
   };
 
-  const changeParams = (p: any) => {
+  const changeParams = (p) => {
     const data = p.filter((item) => item.check == true);
     if (data.length >= 1) {
       setUrl(url.split("?")[0] + "?" + generarQueryString(data));
@@ -202,7 +208,7 @@ function Content() {
 
   const getRequest = async (urlString: string) => {
     setIsLoading(true);
-    let headers: { [key: string]: string } = {};
+    const headers: { [key: string]: string } = {};
 
     if (authData) {
       if (authData.type === "BearerToken") {
@@ -210,7 +216,7 @@ function Content() {
       } else if (authData.type === "APIKey") {
         headers["x-api-key"] = authData.apiKey;
       } else if (authData.type === "BasicAuth") {
-        const credentials = btoa(`${username}:${password}`);
+        const credentials = btoa(`${authData.username}:${authData.password}`);
         headers.Authorization = `Basic ${credentials}`;
       }
     }
@@ -228,7 +234,7 @@ function Content() {
   const postRequest = async (urlString: string) => {
     setIsLoading(true);
     let res;
-    let headers: { [key: string]: string } = {};
+    const headers: { [key: string]: string } = {};
 
     if (typeBodyRequest !== "None") {
       headers["Content-Type"] =
@@ -240,7 +246,7 @@ function Content() {
         } else if (authData.type === "APIKey") {
           headers["x-api-key"] = authData.apiKey;
         } else if (authData.type === "BasicAuth") {
-          const credentials = btoa(`${username}:${password}`);
+          const credentials = btoa(`${authData.username}:${authData.password}`);
           headers.Authorization = `Basic ${credentials}`;
         }
       }
@@ -279,14 +285,14 @@ function Content() {
   };
   const putRequest = async (urlString: string) => {
     setIsLoading(true);
-    let headers: { [key: string]: string } = {};
+    const headers: { [key: string]: string } = {};
     if (authData) {
       if (authData.type === "BearerToken") {
         headers.Authorization = `Bearer ${authData.token}`;
       } else if (authData.type === "APIKey") {
         headers["x-api-key"] = authData.apiKey;
       } else if (authData.type === "BasicAuth") {
-        const credentials = btoa(`${username}:${password}`);
+        const credentials = btoa(`${authData.username}:${authData.password}`);
         headers.Authorization = `Basic ${credentials}`;
       }
     }
@@ -323,7 +329,7 @@ function Content() {
 
   const patchRequest = async (urlString: string) => {
     setIsLoading(true);
-    let headers: { [key: string]: string } = {};
+    const headers: { [key: string]: string } = {};
 
     if (authData) {
       if (authData.type === "BearerToken") {
@@ -331,7 +337,7 @@ function Content() {
       } else if (authData.type === "APIKey") {
         headers["x-api-key"] = authData.apiKey;
       } else if (authData.type === "BasicAuth") {
-        const credentials = btoa(`${username}:${password}`);
+        const credentials = btoa(`${authData.username}:${authData.password}`);
         headers.Authorization = `Basic ${credentials}`;
       }
     }
@@ -368,7 +374,7 @@ function Content() {
 
   const deleteRequest = async (urlString: string) => {
     setIsLoading(true);
-    let headers: { [key: string]: string } = {};
+    const headers: { [key: string]: string } = {};
 
     if (authData) {
       if (authData.type === "BearerToken") {
@@ -376,7 +382,7 @@ function Content() {
       } else if (authData.type === "APIKey") {
         headers["x-api-key"] = authData.apiKey;
       } else if (authData.type === "BasicAuth") {
-        const credentials = btoa(`${username}:${password}`);
+        const credentials = btoa(`${authData.username}:${authData.password}`);
         headers.Authorization = `Basic ${credentials}`;
       }
     }

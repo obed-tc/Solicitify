@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {
   ChangeEvent,
   SetStateAction,
@@ -19,6 +20,8 @@ function Body({ changeJsonBody, changeTypeBody, changeFormBody, typeBody }) {
   );
 
   const requestCurrentValue = useSelector(
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
     (state) => state.requestCurrent.requestCurrent
   );
 

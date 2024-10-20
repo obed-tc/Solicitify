@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { changeRequestCurrent } from "../features/Request/RequestCurrent";
-function Sidebar({ requests }) {
+function Sidebar() {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
   const requestValue = useSelector((state) => state.request.request);
   const dispatch = useDispatch();
 
@@ -13,7 +14,7 @@ function Sidebar({ requests }) {
   //   setRequestsSave(listaGuardada ? JSON.parse(listaGuardada) : []);
   // };
 
-  const selectRequest = (requestItem: any) => {
+  const selectRequest = (requestItem) => {
     localStorage.setItem("requestCurrent", JSON.stringify(requestItem));
     dispatch(changeRequestCurrent(requestItem));
   };

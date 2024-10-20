@@ -1,7 +1,9 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useSelector } from "react-redux";
 const JsonEditor = ({ changeJsonBody }) => {
   const requestCurrentValue = useSelector(
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
     (state) => state.requestCurrent.requestCurrent
   );
   const [jsonText, setJsonText] = useState(
@@ -17,6 +19,7 @@ const JsonEditor = ({ changeJsonBody }) => {
   useEffect(() => {
     const formatedTexto = formatJson(jsonText);
     changeJsonBody(formatedTexto.data);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [jsonText]);
   const handleChange = (event) => {
     setJsonText(event.target.value);

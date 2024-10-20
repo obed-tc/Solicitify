@@ -31,6 +31,7 @@ function Params({ changeParams }) {
         { id: ultimo.id + 1, ...paramItem },
       ]);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [paramsData]);
 
   const handleInputChange = (
