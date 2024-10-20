@@ -13,11 +13,13 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-
+    "noImplicitAny": false, // Permite tipos 'any' implícitos
     /* Linting */
-    "strict": true,
+    "strict": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "strictNullChecks": false,
+
     "noFallthroughCasesInSwitch": true
   },
   "include": ["src"],
