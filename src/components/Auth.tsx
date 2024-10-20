@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-expect-error
 function Auth({ changeAuth }) {
   const requestCurrentValue = useSelector(
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -32,24 +30,16 @@ function Auth({ changeAuth }) {
     changeAuth(formData);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formData]);
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
   };
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error
   const handleAuthTypeChange = (e) => {
     const selectedType = e.target.value;
     setAuthType(selectedType);
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
     setFormData((prevData) => ({
       ...prevData,
       type: selectedType,
