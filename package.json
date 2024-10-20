@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "vite": ">=5.2.14",
+    "braces": ">=3.0.3",
     "rollup": ">=4.22.4",
     "@reduxjs/toolkit": "^2.3.0",
     "axios": "^1.7.7",
@@ -20,6 +21,7 @@
   },
   "devDependencies": {
     "vite": ">=5.2.14",
+    "braces": ">=3.0.3",
     "rollup": ">=4.22.4",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
